@@ -22,7 +22,7 @@ const addPersonalDetails = async (req, res) => {
     const existingDetails = await personalDetails.findOne({
       $or: [{ number }, { email }],
     });
-    if (existingDetails) {
+    if (!existingDetails) {
       return res.status(400).json({
         statusCode: 400,
         status: "failure",
